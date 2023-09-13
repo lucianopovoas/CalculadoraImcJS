@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>JavaScript - DOM</title>
+</head>
+<body>
+    <h1>Calculadora de IMC</h1>
+    <form id="imcForm">
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" step="0.01" required><br><br>
+        
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01" required><br><br>
+        
+        <input type="submit" value="Calcular" id="botao">
+    </form>
+    
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('imcForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+
+            const imc = peso / (altura * altura);
+
+            let classeIMC;
+            if (imc < 16.00) {
+                classeIMC = "Muito abaixo do peso";
+            } else if (imc >= 16.00 && imc <= 16.90) {
+                classeIMC = "Abaixo do peso";
+            } else if (imc >= 17.00 && imc <= 18.40) {
+                classeIMC = "Abaixo do peso";
+            } else if (imc >= 18.50 && imc <= 24.90) {
+                classeIMC = "Peso normal";
+            } else if (imc >= 25.00 && imc <= 29.90) {
+                classeIMC = "Acima do peso";
+            } else {
+                classeIMC = "Obesidade";
+            }
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `Seu IMC é: ${imc.toFixed(2)} - ${classeIMC}`;
+        });
+    </script>
+</body>
+</html>
